@@ -1,7 +1,7 @@
 ## Backend of Boater Beta Project
 
 ## Deployed URL
-https://boaterbeta.herokuapp.com/
+https://boatertalk.herokuapp.com/
 
 
 ### Description
