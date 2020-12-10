@@ -34,7 +34,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-// app.use(cookieParser("this will be our secret code"));
+app.use(cookieParser("this will be our secret code"));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./controllers/auth")(passport);
@@ -90,7 +90,6 @@ app.post("/login", (req, res, next) => {
 
 //registers users
 app.post("/register", (req, res) => {
-
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("User Already Exists");
