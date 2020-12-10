@@ -20,7 +20,7 @@ const riverController = require("./controllers/riversController")
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
-  origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000/'],
+  origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000'],
   credentials: true
 }));
 
