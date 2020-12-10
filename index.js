@@ -116,7 +116,10 @@ app.get("/", (req, res) =>
 // req.user stores the user
 // req object will not be a user object containing session data
 // accessible throughout whole app
-app.get('/getUser', (req, res) => res.send(req.user));
+app.get('/getUser', (req, res) => {
+  console.log(req.user)
+  res.send(req.user)
+});
 
 app.set("port", process.env.PORT || 8080);
 
