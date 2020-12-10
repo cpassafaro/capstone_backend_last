@@ -31,7 +31,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(cookieParser("this will be our secret code"));
+// app.use(cookieParser("this will be our secret code"));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./controllers/auth")(passport);
