@@ -19,12 +19,13 @@ const riverController = require("./controllers/riversController")
 //MIDDLEWARE SETUP
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(
-  cors({
-    origin: "http://localhost:3001",
+app.use(cors(
+  {
+    origin: "https://boatertalk.herokuapp.com/",
     credentials: true,
-  })
-);
+  }
+));
+
 app.use(
   session({
     // We will use secret in our cookie-parser
@@ -70,6 +71,7 @@ app.put('/favorites/:name/:fav', userController.deleteFavortie)
 app.post("/login", (req, res, next) => {
   // use local strategy we defined
     User.find({username:req.body.username}).then(userFind =>{ 
+      console.log(userFind)
         passport.authenticate("local", (err, user) => {
             if (err) console.log(err);
             if (userFind.length != 1) {
