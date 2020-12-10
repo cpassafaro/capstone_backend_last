@@ -118,7 +118,7 @@ app.get("/", (req, res) =>
 // accessible throughout whole app
 app.get('/getUser', (req, res) => {
   console.log('hello')
-  console.log(req)
+  console.log(req.sessions.passport)
   res.send(req.user)
 });
 
