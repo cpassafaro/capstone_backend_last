@@ -115,7 +115,7 @@ app.get("/", (req, res) =>
 // req.user stores the user
 // req object will not be a user object containing session data
 // accessible throughout whole app
-app.post('/getUser', (req, res) => {
+app.get('/getUser', (req, res) => {
   console.log(req)
   console.log('---------------------')
   console.log(req.sessions)
