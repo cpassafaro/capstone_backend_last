@@ -33,6 +33,7 @@ app.use(
     secret: "this will be our secret code",
     resave: true,
     saveUninitialized: true,
+    httpOnly: false,
   })
 );
 app.use(cookieParser("this will be our secret code"));
