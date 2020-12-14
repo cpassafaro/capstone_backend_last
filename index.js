@@ -5,7 +5,11 @@ const passport = require("passport");
 const passportlocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
-const session = require("express-session");
+const session = require("express-session")({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+});
 const bodyParser = require("body-parser");
 const { deserializeUser } = require("passport");
 const User = require("./models/User");
@@ -17,13 +21,14 @@ const riverController = require("./controllers/riversController")
 
 
 //MIDDLEWARE SETUP
-app.use(bodyParser.json());
-app.use(express.json());
 app.use(cors({
   origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000', 'http://localhost:3001', 'https://hardcore-jackson-68ff7b.netlify.app/'],
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true
 }));
+app.use(bodyParser.json());
+app.use(express.json());
+
 
 
 
