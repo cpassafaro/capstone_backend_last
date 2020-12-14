@@ -150,7 +150,8 @@ app.post("/login", (req, res, next) => {
             } else {
               req.login(user, (err) => {
                 if (err) throw err;
-                res.send("Successfully Authenticated");
+                // res.send("Successfully Authenticated");
+                res.redirect('/home');
               });
             }
           })(req, res, next);
