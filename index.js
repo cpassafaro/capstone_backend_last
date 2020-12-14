@@ -33,13 +33,7 @@ app.use(express.json());
 
 
 app.use(
-  session({
-    // We will use secret in our cookie-parser
-    secret: "this will be our secret code",
-    resave: true,
-    saveUninitialized: true,
-    httpOnly: false,
-  })
+  session()
 );
 app.use(cookieParser("this will be our secret code"));
 app.use(passport.initialize());
