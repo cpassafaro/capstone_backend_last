@@ -20,7 +20,7 @@ const riverController = require("./controllers/riversController")
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
-  origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000', 'http://localhost:3001'],
+  origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000', 'http://localhost:3001', 'https://hardcore-jackson-68ff7b.netlify.app/'],
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true
 }));
