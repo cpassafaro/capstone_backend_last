@@ -141,21 +141,26 @@ app.post("/login", (req, res, next) => {
   // use local strategy we defined
     User.find({username:req.body.username}).then(userFind =>{ 
       console.log(userFind)
-        passport.authenticate("local", (err, user) => {
-            if (err) console.log(err);
-            if (userFind.length != 1) {
-              res.send("Username is incorrect");
-            } else if (user == false) {
-              res.send("Password is incorrect");
-            } else {
-              req.login(user, (err) => {
-                if (err) throw err;
-                // res.send("Successfully Authenticated");
-                res.redirect('/');
-              });
-            }
-          })(req, res, next);
-        })
+
+
+      passport.authenticate('local', (req, res) => {
+        res.redirect('/');
+      })
+
+        // passport.authenticate("local", (err, user) => {
+        //     if (err) console.log(err);
+        //     if (userFind.length != 1) {
+        //       res.send("Username is incorrect");
+        //     } else if (user == false) {
+        //       res.send("Password is incorrect");
+        //     } else {
+        //       req.login(user, (err) => {
+        //         if (err) throw err;
+        //         res.send("Successfully Authenticated");
+        //       });
+        //     }
+        //   })(req, res, next);
+        // })
 });
 
 // registers users
