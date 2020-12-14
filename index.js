@@ -68,6 +68,19 @@ app.get('/notes/getauthor/:name/:river', notesController.getByAuthorAndRiver)
 app.put('/favorites/:name', userController.edit)
 //route for deleting an element from the favorties array
 app.put('/favorites/:name/:fav', userController.deleteFavortie)
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////******************************************* */
 //function to login users
 app.post("/login", (req, res, next) => {
   // use local strategy we defined
@@ -105,6 +118,15 @@ app.post("/register", (req, res) => {
     }
   });
 });
+
+/***************************************************** */
+
+
+
+
+
+
+
 
 //route gets all users
 app.get("/", (req, res) =>
