@@ -20,7 +20,7 @@ const riverController = require("./controllers/riversController")
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
-  origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000', 'http://localhost:3001', 'https://hardcore-jackson-68ff7b.netlify.app/'],
+  origin: ['https://boatertalk.herokuapp.com/','http://localhost:3000', 'http://localhost:3001'],
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true
 }));
@@ -32,7 +32,7 @@ app.use(
     // We will use secret in our cookie-parser
     secret: "this will be our secret code",
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
 );
 app.use(cookieParser("this will be our secret code"));
