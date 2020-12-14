@@ -21,7 +21,7 @@ module.exports = {
             })
     },
     getComments: (req,res) => {
-        Comment.findOne({title: req.params.name})
+        Comment.find({title: req.params.name})
             .then((rivers) => {
                 res.json(rivers)
             })
