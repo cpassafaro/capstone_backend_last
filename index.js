@@ -137,52 +137,52 @@ app.put('/favorites/:name/:fav', userController.deleteFavortie)
 
 /////////////******************************************* */
 //function to login users
-// app.post("/login", (req, res, next) => {
-//   // use local strategy we defined
-//     User.find({username:req.body.username}).then(userFind =>{ 
-//       console.log(userFind)
-//         passport.authenticate("local", (err, user) => {
-//             if (err) console.log(err);
-//             if (userFind.length != 1) {
-//               res.send("Username is incorrect");
-//             } else if (user == false) {
-//               res.send("Password is incorrect");
-//             } else {
-//               req.login(user, (err) => {
-//                 if (err) throw err;
-//                 res.send("Successfully Authenticated");
-//               });
-//             }
-//           })(req, res, next);
-//         })
-// });
+app.post("/login", (req, res, next) => {
+  // use local strategy we defined
+    User.find({username:req.body.username}).then(userFind =>{ 
+      console.log(userFind)
+        passport.authenticate("local", (err, user) => {
+            if (err) console.log(err);
+            if (userFind.length != 1) {
+              res.send("Username is incorrect");
+            } else if (user == false) {
+              res.send("Password is incorrect");
+            } else {
+              req.login(user, (err) => {
+                if (err) throw err;
+                res.send("Successfully Authenticated");
+              });
+            }
+          })(req, res, next);
+        })
+});
 
-//registers users
-// app.post("/register", (req, res) => {
-//   User.findOne({ username: req.body.username }, async (err, doc) => {
-//     if (err) throw err;
-//     if (doc) res.send("User Already Exists");
-//     if (!doc) {
-//       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//       const newUser = new User({
-//         username: req.body.username,
-//         password: hashedPassword,
-//       });
-//       await newUser.save();
-//       res.send("User Created");
-//     }
-//   });
-// });
+// registers users
+app.post("/register", (req, res) => {
+  User.findOne({ username: req.body.username }, async (err, doc) => {
+    if (err) throw err;
+    if (doc) res.send("User Already Exists");
+    if (!doc) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const newUser = new User({
+        username: req.body.username,
+        password: hashedPassword,
+      });
+      await newUser.save();
+      res.send("User Created");
+    }
+  });
+});
 
 // req.user stores the user
 // req object will not be a user object containing session data
 // accessible throughout whole app
-// app.get('/getUser', (req, res) => {
-//   console.log(req)
-//   console.log('---------------------')
-//   console.log(req.sessions)
-//   res.send(req.user)
-// });
+app.get('/getUser', (req, res) => {
+  console.log(req)
+  console.log('---------------------')
+  console.log(req.sessions)
+  res.send(req.user)
+});
 
 /***************************************************** */
 
