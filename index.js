@@ -20,24 +20,11 @@ const commentController = require("./controllers/commentController")
 //MIDDLEWARE SETUP
 app.use(bodyParser.json());
 app.use(express.json());
-// app.use(cors({
-//   origin: ['http://localhost:3000', 'https://hardcore-jackson-68ff7b.netlify.app'],
-//   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-//   credentials: true
-// }));
-
-
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  if ('OPTIONS' == req.method) {
-       res.send(200);
-   } else {
-       next();
-   }
-  });
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://hardcore-jackson-68ff7b.netlify.app'],
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true
+}));
 
 
 
@@ -154,26 +141,20 @@ app.post("/login", (req, res, next) => {
   // use local strategy we defined
     User.find({username:req.body.username}).then(userFind =>{ 
       console.log(userFind)
-
-
-      passport.authenticate('local', (req, res) => {
-        res.redirect('/');
-      })
-
-        // passport.authenticate("local", (err, user) => {
-        //     if (err) console.log(err);
-        //     if (userFind.length != 1) {
-        //       res.send("Username is incorrect");
-        //     } else if (user == false) {
-        //       res.send("Password is incorrect");
-        //     } else {
-        //       req.login(user, (err) => {
-        //         if (err) throw err;
-        //         res.send("Successfully Authenticated");
-        //       });
-        //     }
-        //   })(req, res, next);
-        // })
+        passport.authenticate("local", (err, user) => {
+            if (err) console.log(err);
+            if (userFind.length != 1) {
+              res.send("Username is incorrect");
+            } else if (user == false) {
+              res.send("Password is incorrect");
+            } else {
+              req.login(user, (err) => {
+                if (err) throw err;
+                res.send("Successfully Authenticated");
+              });
+            }
+          })(req, res, next);
+        })
 });
 
 // registers users
