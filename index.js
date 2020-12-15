@@ -22,13 +22,14 @@ app.use(bodyParser.json());
 
 //middleware function
 function isAuthenticated(req, res, next) {
-  console.log(req)
+  console.log(req.headers)
   if(req.headers.authorization){
       try{
           console.log("User has token");
           let token = req.headers.authorization.split("Bearer ")[1];
           console.log(token);
-        let accessToken = jwt.decode(token, config.jwtSecret);
+        let accessToken = jwt.decode(token, secret);
+        req.accessToken = accessToken
         return next();
       }catch(err){
           console.log(err);
@@ -135,12 +136,11 @@ app.put('/favorites/:name/:fav', userController.deleteFavortie)
 // req.user stores the user
 // req object will not be a user object containing session data
 // accessible throughout whole app
-// app.get('/getUser', (req, res) => {
-//   console.log(req)
-//   console.log('---------------------')
-//   console.log(req.sessions)
-//   res.send(req.user)
-// });
+app.get('/getUser', isAuthenticated, (req, res) => {
+  console.log(req.accessToken)
+  User.findOne({_id: req.accessToken.id}).then(user => res.json(user))
+  // res.send(req.user)
+});
 
 /***************************************************** */
 
