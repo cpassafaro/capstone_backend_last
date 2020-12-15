@@ -16,7 +16,12 @@ let secret = "asdof97h07y4t3";
 
 
 //MIDDLEWARE SETUP
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://hardcore-jackson-68ff7b.netlify.app'],
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true
+}));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
