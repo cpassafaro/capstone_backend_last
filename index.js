@@ -145,7 +145,7 @@ app.get('/getUser', isAuthenticated, (req, res) => {
 /***************************************************** */
 
 
-app.post('/signup', (req, res) => {
+app.post('/register', (req, res) => {
   if (req.body.username && req.body.password) {
     let newUser = {
       username: req.body.username,
