@@ -12,7 +12,6 @@ const userSchema = new Schema ({
         type:String,
         required:true,
         trim:true,
-        minlength:8
     },
     picture: String,
     favorites: [],
