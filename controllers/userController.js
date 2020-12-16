@@ -15,7 +15,7 @@ module.exports = {
     deleteFavortie: (req, res) => {
         User.findOneAndUpdate(
             {username: req.params.name},
-            {$pull: {favorites: req.params.fav}},
+            {$pull: {favorites: req.body.fav}},
             {new:true})
             .then(user => {
                 res.json(user)
