@@ -97,7 +97,7 @@ app.get('/notes/getauthor/:name/:river', notesController.getByAuthorAndRiver)
 //route for adding an element to the favorites array
 app.put('/favorites/:name', userController.edit)
 //route for deleting an element from the favorties array
-app.put('/favorites/:name/:fav', userController.deleteFavortie)
+app.put('/favorites/:name/delete', userController.deleteFavortie)
 
 /////////////******************************************* */
 //function to login users
