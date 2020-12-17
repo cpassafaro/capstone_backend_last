@@ -16,7 +16,7 @@ module.exports = {
         console.log(req.body)
         User.findOneAndUpdate(
             {username: req.params.name},
-            {$pull: {favorites: {$elemMatch: req.body.fav}}},
+            {$pull: {favorites: {$elemMatch: req.body}}},
             {multi: true}, //sets to remove multiple element
             // {new:true})
 
