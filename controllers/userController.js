@@ -13,10 +13,10 @@ module.exports = {
             })
     },
     deleteFavortie: (req, res) => {
-        console.log('Req.body,' + req.body)
+        console.log('Req.params.river,' + req.params.river)
         User.findOneAndUpdate(
             {username: req.params.name},
-            {$pull: {favorites: {name: req.body}}},
+            {$pull: {favorites: {name: req.params.river}}},
             {multi: true} //sets to remove multiple element
             // {new:true})
 
