@@ -21,9 +21,9 @@ module.exports = {
 
     //         { $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }, // item(s) to match from array you want to pull/remove
     // { multi: true }
-            .then(user => {
+            // .then(user => {
                 // res.send(user) 
-                console.log(res)
+                // console.log(res)
                 // let index = ''
                 // let fav = user.favorites
                 // for(let i =0; i< fav.length; i++){
@@ -34,7 +34,7 @@ module.exports = {
                 //     return index
                 // }
                 // console.log(index)
-            }
+            // }
         )
     }
 }
