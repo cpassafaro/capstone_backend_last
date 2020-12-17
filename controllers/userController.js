@@ -13,17 +13,17 @@ module.exports = {
             })
     },
     deleteFavortie: (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         User.findOneAndUpdate(
             {username: req.params.name},
-            {$pull: {favorites: {$elemMatch: req.body}}},
-            {multi: true}, //sets to remove multiple element
+            {$pull: {favorites: req.body}}
+            // {multi: true}, //sets to remove multiple element
             // {new:true})
 
     //         { $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }, // item(s) to match from array you want to pull/remove
     // { multi: true }
-            // .then(user => {
-                // res.send(user) 
+            .then(user => {
+                res.send(user) 
                 // console.log(res)
                 // let index = ''
                 // let fav = user.favorites
