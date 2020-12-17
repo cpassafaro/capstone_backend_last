@@ -13,6 +13,7 @@ module.exports = {
             })
     },
     deleteFavortie: (req, res) => {
+        console.log(req.body)
         User.findOneAndUpdate(
             {username: req.params.name},
             {$pull: {favorites: {$elemMatch: req.body.fav}}},
