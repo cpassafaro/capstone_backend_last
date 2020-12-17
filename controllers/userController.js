@@ -18,7 +18,7 @@ module.exports = {
             
         User.findOneAndUpdate(
             {username: req.params.name},
-            {$pull: {favorites: {name: req.params.river}}}, { safe: true, upsert: true },
+            {$pull: {'favorites': {name: req.params.river}}}, { safe: true, upsert: true },
             // {multi: true} //sets to remove multiple element
             // {new:true})
             function(err, node) {
