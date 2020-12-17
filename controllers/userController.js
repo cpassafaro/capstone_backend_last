@@ -23,7 +23,7 @@ module.exports = {
             // {new:true})
             function(err, node) {
                 if (err) { return handleError(res, err); }
-                return res.status(200).json(node.favorites);
+                return res.status(200).json(node.favorites.name);
             })
 
     //         { $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }, // item(s) to match from array you want to pull/remove
