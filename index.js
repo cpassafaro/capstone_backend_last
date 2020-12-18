@@ -48,8 +48,6 @@ function isAuthenticated(req, res, next) {
 }
 
 
-
-
 app.use(
   session({
     // We will use secret in our cookie-parser
@@ -58,10 +56,7 @@ app.use(
     saveUninitialized: true
   })
 );
-// app.use(cookieParser("this will be our secret code"));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// require("./controllers/auth")(passport);
+
 
 // ROUTES ALL
 
@@ -99,45 +94,6 @@ app.put('/favorites/:name', userController.edit)
 //route for deleting an element from the favorties array
 app.put('/favorites/:name/delete/:river', userController.deleteFavortie)
 
-/////////////******************************************* */
-//function to login users
-// app.post("/login", (req, res, next) => {
-//   // use local strategy we defined
-//     User.find({username:req.body.username}).then(userFind =>{ 
-//       console.log(userFind)
-//         passport.authenticate("local", (err, user) => {
-//             if (err) console.log(err);
-//             if (userFind.length != 1) {
-//               res.send("Username is incorrect");
-//             } else if (user == false) {
-//               res.send("Password is incorrect");
-//             } else {
-//               req.login(user, (err) => {
-//                 if (err) throw err;
-//                 res.send("Successfully Authenticated");
-//               });
-//             }
-//           })(req, res, next);
-//         })
-// });
-
-// registers users
-// app.post("/register", (req, res) => {
-//   User.findOne({ username: req.body.username }, async (err, doc) => {
-//     if (err) throw err;
-//     if (doc) res.send("User Already Exists");
-//     if (!doc) {
-//       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//       const newUser = new User({
-//         username: req.body.username,
-//         password: hashedPassword,
-//       });
-//       await newUser.save();
-//       res.send("User Created");
-//     }
-//   });
-// });
-
 // req.user stores the user
 // req object will not be a user object containing session data
 // accessible throughout whole app
@@ -147,7 +103,6 @@ app.get('/getUser', isAuthenticated, (req, res) => {
   // res.send(req.user)
 });
 
-/***************************************************** */
 
 
 app.post('/register', (req, res) => {
@@ -238,13 +193,42 @@ app.listen(app.get("port"), () => {
 });
 
 
-//hello
 
+/////////////******************************************* */
+//function to login users
+// app.post("/login", (req, res, next) => {
+//   // use local strategy we defined
+//     User.find({username:req.body.username}).then(userFind =>{ 
+//       console.log(userFind)
+//         passport.authenticate("local", (err, user) => {
+//             if (err) console.log(err);
+//             if (userFind.length != 1) {
+//               res.send("Username is incorrect");
+//             } else if (user == false) {
+//               res.send("Password is incorrect");
+//             } else {
+//               req.login(user, (err) => {
+//                 if (err) throw err;
+//                 res.send("Successfully Authenticated");
+//               });
+//             }
+//           })(req, res, next);
+//         })
+// });
 
-// app.use(bodyParser.json());
-// app.use(express.json());
-// app.use(cors({
-//   origin: ['http://localhost:3000', 'https://hardcore-jackson-68ff7b.netlify.app'],
-//   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-//   credentials: true
-// }));
+// registers users
+// app.post("/register", (req, res) => {
+//   User.findOne({ username: req.body.username }, async (err, doc) => {
+//     if (err) throw err;
+//     if (doc) res.send("User Already Exists");
+//     if (!doc) {
+//       const hashedPassword = await bcrypt.hash(req.body.password, 10);
+//       const newUser = new User({
+//         username: req.body.username,
+//         password: hashedPassword,
+//       });
+//       await newUser.save();
+//       res.send("User Created");
+//     }
+//   });
+// });
